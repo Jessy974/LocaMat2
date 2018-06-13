@@ -58,6 +58,7 @@
     <Compile Include="Metier\Location.cs" />
     <Compile Include="Metier\OffreProduit.cs" />
     <Compile Include="Metier\Produit.cs" />
+    <Compile Include="Metier\Service\ServiceProduit.cs" />
     <Compile Include="UI\ModuleGestionLocation.cs" />
     <Compile Include="UI\Application.cs" />
     <Compile Include="UI\ConsoleHelper.cs" />

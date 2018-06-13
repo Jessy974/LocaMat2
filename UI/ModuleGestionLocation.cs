@@ -67,10 +67,38 @@ namespace LocaMat
 
                 var liste = bd.OffreProduits.Where(x => x.IdAgence == id);
                 ConsoleHelper.AfficherListe(liste);
-                
+
+
+                var location = new Location();
+                {
+                   
+                    location.DateFin = ConsoleSaisie.SaisirDateObligatoire("date de fin");
+                    location.Quantite = ConsoleSaisie.SaisirEntierObligatoire("quantite");
+                    location.TotalFacture = ConsoleSaisie.SaisirDecimalObligatoire("prix");
+
+                };
+
+                location.IdProduit = ConsoleSaisie.SaisirEntierObligatoire("id produit");
+                {
+
+                    ConsoleHelper.AfficherMessageErreur("id invalide");
+                    location.IdProduit = ConsoleSaisie.SaisirEntierObligatoire("id produit");
+                }
+
+
+                location.DateDebut = ConsoleSaisie.SaisirDateObligatoire("date de début");
+                while (location.DateDebut < DateTime.Today) 
+                {
+                    ConsoleHelper.AfficherMessageErreur("date invalide");
+
+                    location.DateDebut = ConsoleSaisie.SaisirDateObligatoire("date de début");
+                  
+                }
+             
+           
+
 
             }
-
         }
 
     }

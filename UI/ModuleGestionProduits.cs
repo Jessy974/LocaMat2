@@ -60,13 +60,19 @@ namespace LocaMat.UI
                 Description = ConsoleSaisie.SaisirChaine("Description : ", false),
                 PrixJourHT = ConsoleSaisie.SaisirDecimalObligatoire("Prix : "),
                 IdCategorie = ConsoleSaisie.SaisirEntierObligatoire("Id catégorie : ")
-            };
 
+
+            };
             using (var bd = Application.GetBaseDonnees())
             {
-                bd.Produits.Add(produit);
-                bd.SaveChanges();
-
+                var categorie = bd.CategorieProduits.
+                SingleOrDefault(x => x.Id == produit.IdCategorie);
+                if (categorie == null)
+                {
+                    ConsoleHelper.AfficherMessageErreur("catégorie invalide.Retour au menu");
+                        return;
+                }
+               
             }
         }
         private void SupprimerProduit()
@@ -84,7 +90,7 @@ namespace LocaMat.UI
                 sup.SaveChanges();
             }
         }
-        private void ChercherProduit()
+        public void ChercherProduit()
         {
             ConsoleHelper.AfficherEntete("Rechercher un produit");
 
